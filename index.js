@@ -15,21 +15,21 @@
 // /!\ DO NOT MODIFY THIS FILE /!\
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-// react-web-cli is installed globally on people's computers. This means
+// react-native-winjs-cli is installed globally on people's computers. This means
 // that it is extremely difficult to have them upgrade the version and
 // because there's only one global version installed, it is very prone to
 // breaking changes.
 //
-// The only job of react-web-cli is to init the repository and then
-// forward all the commands to the local version of react-web.
+// The only job of react-native-winjs-cli is to init the repository and then
+// forward all the commands to the local version of react-native-winjs.
 //
 // If you need to add a new command, please add it to local-cli/.
 //
 // The only reason to modify this file is to add more warnings and
-// troubleshooting information for the `react-web init` command.
+// troubleshooting information for the `react-native-winjs init` command.
 //
 // Do not make breaking changes! We absolutely don't want to have to
-// tell people to update their global version of react-web-cli.
+// tell people to update their global version of react-native-winjs-cli.
 //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // /!\ DO NOT MODIFY THIS FILE /!\
@@ -49,7 +49,7 @@ var CLI_MODULE_PATH = function() {
   return path.resolve(
     process.cwd(),
     'node_modules',
-    'react-web',
+    'react-native-winjs',
     'cli.js'
   );
 };
@@ -58,7 +58,7 @@ var REACT_WEB_PACKAGE_JSON_PATH = function() {
   return path.resolve(
     process.cwd(),
     'node_modules',
-    'react-web',
+    'react-native-winjs',
     'package.json'
   );
 };
@@ -77,7 +77,7 @@ if (cli) {
   var args = process.argv.slice(2);
   if (args.length === 0) {
     console.error(
-      'You did not pass any commands, did you mean to run `react-web init`?'
+      'You did not pass any commands, did you mean to run `react-native-winjs init`?'
     );
     process.exit(1);
   }
@@ -89,7 +89,7 @@ if (cli) {
       init(args[1], verbose);
     } else {
       console.error(
-        'Usage: react-web init <ProjectName> [--verbose]'
+        'Usage: react-native-winjs init <ProjectName> [--verbose]'
       );
       process.exit(1);
     }
@@ -97,7 +97,7 @@ if (cli) {
   default:
     console.error(
       'Command `%s` unrecognized. ' +
-      'Did you mean to run this inside a react-web project?',
+      'Did you mean to run this inside a react-native-winjs project?',
       args[0]
     );
     process.exit(1);
@@ -161,7 +161,7 @@ function createProject(name, verbose) {
   var projectName = path.basename(root);
 
   console.log(
-    'This will walk you through creating a new React Web project in',
+    'This will walk you through creating a new React Native WinJS project in',
     root
   );
 
@@ -182,7 +182,7 @@ function createProject(name, verbose) {
 
   process.chdir(root);
 
-  console.log('Installing react-web package from npm...');
+  console.log('Installing react-native-winjs package from npm...');
 
   if (verbose) {
     runVerbose(root, projectName);
@@ -192,11 +192,11 @@ function createProject(name, verbose) {
 }
 
 function run(root, projectName) {
-  exec('npm install --save react-web', function(e, stdout, stderr) {
+  exec('npm install --save react-native-winjs', function(e, stdout, stderr) {
     if (e) {
       console.log(stdout);
       console.error(stderr);
-      console.error('`npm install --save react-web` failed');
+      console.error('`npm install --save react-native-winjs` failed');
       process.exit(1);
     }
 
@@ -206,10 +206,10 @@ function run(root, projectName) {
 }
 
 function runVerbose(root, projectName) {
-  var proc = spawn('npm', ['install', '--verbose', '--save', 'react-web'], {stdio: 'inherit'});
+  var proc = spawn('npm', ['install', '--verbose', '--save', 'react-native-winjs'], {stdio: 'inherit'});
   proc.on('close', function (code) {
     if (code !== 0) {
-      console.error('`npm install --save react-web` failed');
+      console.error('`npm install --save react-native-winjs` failed');
       return;
     }
 
@@ -220,11 +220,11 @@ function runVerbose(root, projectName) {
 
 function checkForVersionArgument() {
   if (process.argv.indexOf('-v') >= 0 || process.argv.indexOf('--version') >= 0) {
-    console.log('react-web-cli: ' + require('./package.json').version);
+    console.log('react-native-winjs-cli: ' + require('./package.json').version);
     try {
-      console.log('react-web: ' + require(REACT_WEB_PACKAGE_JSON_PATH()).version);
+      console.log('react-native-winjs: ' + require(REACT_WEB_PACKAGE_JSON_PATH()).version);
     } catch (e) {
-      console.log('react-web: n/a - not inside a React Web project directory')
+      console.log('react-native-winjs: n/a - not inside a React Native WinJS project directory')
     }
     process.exit();
   }
