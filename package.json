@@ -1,0 +1,23 @@
+{
+  "name": "react-native-winjs-cli",
+  "version": "0.0.1",
+  "license" : "BSD-3-Clause",
+  "description": "The React Native WinJS CLI tools",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axsy-dev/react-native-winjs-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axsy-dev/react-native-winjs-cli/issues"
+  },
+  "homepage": "https://github.com/axsy-dev/react-native-winjs-cli#readme",
+  "bin": {
+    "react-native-winjs": "index.js"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "prompt": "^0.2.14",
+    "semver": "^5.0.3"
+  }
+}
