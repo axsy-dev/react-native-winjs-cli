@@ -106,6 +106,10 @@ if (cli) {
 }
 
 function validatePackageName(name) {
+    // support path expansion
+  var root = path.resolve(name);
+  name = path.basename(root);
+
   if (!name.match(/^[$A-Z_][0-9A-Z_$]*$/i)) {
     console.error(
       '"%s" is not a valid name for a project. Please use a valid identifier ' +
@@ -128,7 +132,7 @@ function validatePackageName(name) {
 function init(name, verbose) {
   validatePackageName(name);
 
-  if (fs.existsSync(name)) {
+  if (name != '.' && fs.existsSync(name)) {
     createAfterConfirmation(name, verbose);
   } else {
     createProject(name, verbose);
